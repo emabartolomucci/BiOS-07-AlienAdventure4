@@ -2,8 +2,7 @@
 //  RedefinePolicingItems.swift
 //  Alien Adventure
 //
-//  Created by Jarrod Parkes on 10/4/15.
-//  Copyright © 2015 Udacity. All rights reserved.
+//  Edited by Emanuele Bartolomucci on 2016/10/15.
 //
 
 // MARK: - UDPolicingError
@@ -20,10 +19,21 @@ extension Hero {
         
         func policingFilter(item: UDItem) throws -> Void {
             
+            if item.name.lowercaseString.containsString("laser") {
+                throw UDPolicingError.NameContainsLaser
+            }
+            
+            if let planetOfOrigin = item.historicalData["PlanetOfOrigin"] {
+                if planetOfOrigin as? String == "Cunia" {
+                    throw UDPolicingError.ItemFromCunia
+                }
+            }
+            
+            if item.baseValue < 10 {
+                throw UDPolicingError.ValueLessThan10
+            }
         }
         
-        return policingFilter        
-    }    
+        return policingFilter
+    }
 }
-
-// If you have completed this function and it is working correctly, feel free to skip this part of the adventure by opening the "Under the Hood" folder, and making the following change in Settings.swift: "static var RequestsToSkip = 3"

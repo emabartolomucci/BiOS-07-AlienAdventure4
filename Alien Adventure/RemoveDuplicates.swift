@@ -2,14 +2,17 @@
 //  RemoveDuplicates.swift
 //  Alien Adventure
 //
-//  Created by Jarrod Parkes on 10/4/15.
-//  Copyright © 2015 Udacity. All rights reserved.
+//  Edited by Emanuele Bartolomucci on 2016/10/15.
 //
 
 extension Hero {
     
-    func removeDuplicates(inventory: [UDItem]) -> [UDItem] {        
-        return [UDItem]()
+    func removeDuplicates(inventory: [UDItem]) -> [UDItem] {
+        
+        let inventoryTemp = Set<UDItem>(inventory)
+        
+        let purgedInventory = Array<UDItem>(inventoryTemp)
+        
+        return purgedInventory
     }
-    
 }
